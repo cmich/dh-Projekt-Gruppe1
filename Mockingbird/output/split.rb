@@ -15,10 +15,16 @@ if ARGV.size == 2 && ARGV[0] == "-f"
 	doc = Nokogiri::XML(File.open(file))
 	doc.encoding = 'UTF-8'
 	doc.xpath("//document//chapter").each do |chapter|
-
-		File.open("chapter" + counter.to_s + ".txt", "w+") do |file|
-			file.write(chapter.content)
+		if counter < 10
+			File.open("chapter0" + counter.to_s + ".txt", "w+") do |file|
+				file.write(chapter.content)
+			end
 		end
+		if counter >= 10
+			File.open("chapter" + counter.to_s + ".txt", "w+") do |file|
+				file.write(chapter.content)
+			end
+		end		
 		counter = counter + 1
 	end
 	File.open(file + '_clear.xml','w') {|f| doc.write_xml_to f}	

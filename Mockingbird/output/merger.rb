@@ -48,7 +48,7 @@ if ARGV.size == 2 && ARGV[0] == "-d"
 	#the file has to be located in the parent folder of the given chapters folder
 	#also it has to be the only xml file there 
 
-	ausgabe = directory.gsub!("/chapters","")
+	ausgabe = directory.gsub!("/annotated_chapters","")
 	$file2 = Dir.glob(ausgabe).sort
 	doc2 = Nokogiri::XML(File.open($file2[0]))
 	doc2.encoding = 'UTF-8'
